@@ -1,7 +1,6 @@
 $(document).ready(function () {
     function location(lat, lon) {
 
-
     $.ajax({
     type:'get',
     url: 'https://oslobysykkel.no/api/v1/stations',
@@ -11,6 +10,8 @@ $(document).ready(function () {
     success: function(data) {
         $('#tagged').html(data.stations[0].title); 
     console.log(data.stations);
+
+
   }
 });
     };
