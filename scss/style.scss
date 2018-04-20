@@ -1,0 +1,18 @@
+@import "normalise";
+@import "colors";
+@import "typography";
+
+html {
+    height: 100%;
+}
+
+body {
+}
+
+.bike {
+    background: rgba(39, 72, 203, 1);
+    padding: 20px 10px;
+    max-width: 400px;
+    min-height: 220px;
+    text-align: center;
+}

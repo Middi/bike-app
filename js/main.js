@@ -4,17 +4,17 @@ $(document).ready(function () {
 
     $.ajax({
     type:'GET',
-    url: 'https://cors-anywhere.herokuapp.com/https://oslobysykkel.no/api/v1/stations/availability',
+    url: 'https://cors-anywhere.herokuapp.com/https://oslobysykkel.no/api/v1/stations',
     headers: {
         'Client-Identifier': '9c15107665f894e8396aabad6c3ed366'
     },
     success: function(data) {
-        var check = data.stations.find(checkID);
+        var check =  $.grep(data.stations, function(e){ return e.id == 218; });
         
-        $('#tagged2').html("bikes available : " + check.availability.bikes); 
+        $('#location1').html(check[0].title); 
 
     function checkID(response) { 
-        return response.id === 261;
+        var location1 = response.id === 218;
     }
      console.log(check); 
   }
@@ -22,17 +22,17 @@ $(document).ready(function () {
 
     $.ajax({
     type:'GET',
-    url: 'https://cors-anywhere.herokuapp.com/https://oslobysykkel.no/api/v1/stations',
+    url: 'https://cors-anywhere.herokuapp.com/https://oslobysykkel.no/api/v1/stations/availability',
     headers: {
         'Client-Identifier': '9c15107665f894e8396aabad6c3ed366'
     },
     success: function(data) {
         var check = data.stations.find(checkID);
         
-        $('#tagged').html(check.title); 
+        $('#available1').html("bikes available : " + check.availability.bikes); 
 
     function checkID(response) { 
-        return response.id === 261;
+        return response.id === 218;
     }
      console.log(check); 
   }
@@ -40,7 +40,7 @@ $(document).ready(function () {
 
 
 
-    };
+    }
 
 //Get Latitude and Longitude
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
   function error(pos) {
 
-    var url = "https://ipinfo.io/geo";
+    var url = "https://cors-anywhere.herokuapp.com/https://ipinfo.io/geo";
     $.getJSON(url, function(response){
 
       var loc = response.loc.split(',');
